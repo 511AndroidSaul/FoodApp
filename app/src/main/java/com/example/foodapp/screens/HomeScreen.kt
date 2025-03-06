@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -36,6 +38,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.foodapp.components.FoodCard
+import com.example.foodapp.models.foodList
 import com.example.foodapp.ui.theme.FoodAppTheme
 import com.example.foodapp.ui.theme.primaryColor
 import com.example.foodapp.utils.Logout
@@ -80,9 +84,18 @@ fun HomeScreen(innerPadding:PaddingValues){
         }
 
         Text("Nuestras Categorias",
-                fontSize = 20.sp,
-                modifier = Modifier.padding(top = 22.dp))
+                fontSize = 23.sp,
+                modifier = Modifier.padding(top = 22.dp)
+                    .padding(bottom = 17.dp))
         //falta agregar la fuente y el estilo
+
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(18.dp)
+        ){
+            items(foodList){food ->
+                FoodCard(food = food)
+            }
+        }
 
         //Spacer(modifier = Modifier.height(200.dp))
         // TabBar
