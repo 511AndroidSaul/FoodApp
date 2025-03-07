@@ -34,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -93,6 +94,7 @@ fun HomeScreen(innerPadding:PaddingValues){
 
         Text("Nuestras Categorias",
                 fontSize = 23.sp,
+                fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 22.dp)
                     .padding(bottom = 17.dp))
         //falta agregar la fuente y el estilo
@@ -114,6 +116,7 @@ fun HomeScreen(innerPadding:PaddingValues){
 
         Text("Busca los mejores restaurantes",
             fontSize = 23.sp,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 15.dp)
                 .padding(bottom = 15.dp)
                 .width(300.dp))
@@ -135,6 +138,7 @@ fun HomeScreen(innerPadding:PaddingValues){
         }
         Text("Nuestras mejores comidas",
             fontSize = 23.sp,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 22.dp)
                 .padding(bottom = 22.dp))
 
@@ -156,7 +160,8 @@ fun HomeScreen(innerPadding:PaddingValues){
                             tint = darkGreen
                         )
                         Text(dishes.stars +" "+ dishes.name,
-                            fontSize = 15.sp)
+                            fontSize = 15.sp
+                        )
                     }
 
                 }
