@@ -21,9 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,7 +36,9 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.foodapp.components.FoodBrandCard
 import com.example.foodapp.components.FoodCard
+import com.example.foodapp.models.foodBrandList
 import com.example.foodapp.models.foodList
 import com.example.foodapp.ui.theme.FoodAppTheme
 import com.example.foodapp.ui.theme.primaryColor
@@ -57,7 +57,7 @@ fun HomeScreen(innerPadding:PaddingValues){
         modifier = Modifier
             .fillMaxSize()
             .padding(innerPadding)
-            .padding(20.dp)
+            .padding(12.dp)
     ) {
 
         Row(modifier = Modifier
@@ -93,75 +93,43 @@ fun HomeScreen(innerPadding:PaddingValues){
             horizontalArrangement = Arrangement.spacedBy(18.dp)
         ){
             items(foodList){food ->
-                FoodCard(food = food)
+                Column(
+                    modifier = Modifier.height(120.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    FoodCard(food = food)
+                    Text(food.name)
+                }
+
             }
         }
 
-        //Spacer(modifier = Modifier.height(200.dp))
-        // TabBar
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.clickable {
-                    selectedTab = "Noticias"
-                    Log.i("HomeScreenJuan","Presionando columna noticias")
+        Text("Busca los mejores restaurantes",
+            fontSize = 23.sp,
+            modifier = Modifier.padding(top = 15.dp)
+                .padding(bottom = 15.dp)
+                .width(300.dp))
+        //falta agregar la fuente y el estilo
+
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(18.dp)
+        ){
+            items(foodBrandList){ foodBrand ->
+                Column(
+                    modifier = Modifier.height(120.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    FoodBrandCard(foodBrand = foodBrand)
+                    Text(foodBrand.name)
                 }
-            ) {
-                Text(
-                    text ="Noticias",
-                    fontSize = 25.sp,
-                    fontWeight = if(selectedTab == "Noticias") FontWeight.Bold else FontWeight.Light,
-                    color = if(selectedTab == "Noticias") Color.Black else Color.LightGray
-                )
-                if(selectedTab == "Noticias"){
-                    Box(modifier = Modifier
-                        .height(5.dp)
-                        .width(45.dp)
-                        .background(primaryColor)
-                    )
-                }
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text ="Eventos",
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-                Box(modifier = Modifier
-                    .height(5.dp)
-                    .width(45.dp)
-                    .background(primaryColor)
-                )
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text ="Clima",
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-                Box(modifier = Modifier
-                    .height(5.dp)
-                    .width(45.dp)
-                    .background(primaryColor)
-                )
+
             }
         }
-        Button(onClick = {
-            counter++
-            Log.d("HomeScreenJuan",counter.toString())
-        }) {
-            Text("Presionar")
-        }
-        Text(counter.toString(), fontSize = 26.sp)
+        Text("Nuestras mejores comidas",
+            fontSize = 23.sp,
+            modifier = Modifier.padding(top = 22.dp)
+                .padding(bottom = 22.dp))
+
     }
 }
 
