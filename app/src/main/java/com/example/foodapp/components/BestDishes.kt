@@ -26,8 +26,8 @@ import com.example.foodapp.ui.theme.primaryColor
 fun BestDishes(dishes: Dishes){
     Box(
         modifier = Modifier
-            .height(90.dp)
-            .width(90.dp)
+            .height(110.dp)
+            .width(110.dp)
 
     ){
         GlideImage(
@@ -45,6 +45,7 @@ fun BestDishes(dishes: Dishes){
         ){
             Text(dishes.cost)
         }
+
     }
 }
 

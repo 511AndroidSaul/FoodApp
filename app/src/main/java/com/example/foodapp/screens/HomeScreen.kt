@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -36,14 +39,19 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.foodapp.components.BestDishes
 import com.example.foodapp.components.FoodBrandCard
 import com.example.foodapp.components.FoodCard
+import com.example.foodapp.models.Dishes
+import com.example.foodapp.models.dishesList
 import com.example.foodapp.models.foodBrandList
 import com.example.foodapp.models.foodList
 import com.example.foodapp.ui.theme.FoodAppTheme
+import com.example.foodapp.ui.theme.darkGreen
 import com.example.foodapp.ui.theme.primaryColor
 import com.example.foodapp.utils.Logout
 import com.example.foodapp.utils.PersonCircle
+import com.example.foodapp.utils.StarFull
 
 @Composable
 fun HomeScreen(innerPadding:PaddingValues){
@@ -130,6 +138,32 @@ fun HomeScreen(innerPadding:PaddingValues){
             modifier = Modifier.padding(top = 22.dp)
                 .padding(bottom = 22.dp))
 
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.spacedBy(9.dp),
+            horizontalArrangement = Arrangement.spacedBy(15.dp)
+        ) {
+            items(dishesList){dishes ->
+                Column(
+                    modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 10.dp)) {
+                    BestDishes(dishes = dishes)
+                    Row(){
+                        Icon(imageVector = StarFull,
+                            contentDescription = null,
+                            modifier = Modifier.padding(end = 8.dp).size(18.dp),
+                            tint = darkGreen
+                        )
+                        Text(dishes.stars +" "+ dishes.name,
+                            fontSize = 15.sp)
+                    }
+
+                }
+
+
+            }
+        }
     }
 }
 
